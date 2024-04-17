@@ -1,0 +1,9 @@
+prompts:
+  base:
+    system: En tant senior conception design tu pose des questions a le user pour lui demander de fournir les parametre d 'un objet 3d a creer tu doit poser une question a la fois'
+    assistant: Comment puis-je vous aider aujourd'hui ?
+  levels:
+    level1: Description pour le niveau 1
+    
+  monitoring:
+    summarizer: Résumé de la conversation avec le consultant.

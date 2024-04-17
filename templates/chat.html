@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Auto Assessment</title>
+  <!-- Add crossorigin attribute for better security -->
+  <link rel="stylesheet" href="../static/main.css">
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <main role="main" class="container">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-dark" href="/">GPT Family</a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-white" style="background-color: black;pointer-events: none;" href="#">Chat GPT</a>
+      </nav>
+      <!-- Add aria-disabled attribute for better accessibility -->
+      <button type="button" class="btn btn-secondary" aria-disabled="true">Sign in</button>
+    </div>
+
+    <div class="container" style="padding-bottom: 1%;">
+      <div>
+        <ul id="chatconv">
+          <!-- Add role="presentation" for better semantics -->
+          {% for r in chat %}
+            {% if r.role == "user" %}
+              <li class="user" role="presentation"><span>{{ r.role }}</span>: {{ r.message }}</li>
+            {% else %}
+              <li class="assistant" role="presentation"><span style="text-decoration: underline;">{{ r.role }}</span>: {{ r.message }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <form action="{% url 'chat' %}" method="post" id="talk">
+        {% csrf_token %}
+        <!-- Add maxlength attribute for better input validation -->
+        <textarea id="jawab" class="form-control" rows="4" name="jawab" placeholder="Let's talk... Say Hello to start (ENTER to submit, SHIFT+ENTER to break line)" required maxlength="255"></textarea>
+      </form>
+      <div class="row">
+        <form class="col" action="{% url 'reinit' %}" methode="get" id="reinit">
+          <input class="form-control" style="background-color: #F8F4E3; color: black;" type="submit" value="Clear conversation" title="Clear conversation" />
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+  <script src="../static/popper.min.js"></script>
+  <script src="../static/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    // Handle potential errors in JavaScript functions
+    function handleErrors(func, message) {
+      try {
+        func();
+      } catch (error) {
+        console.error(message, error);
+      }
+    }
+
+    handleErrors(() => {
+      history.scrollRestoration = "manual";
+      window.onload = function() {
+        scrollToBottom();
+        $('#jawab').focus();
+      };
+    }, "Error setting up page onload event.");
+
+    handleErrors(() => {
+      $('form').each(function() {
+        if ($(this).attr('id') === "talk") {
+          $(this).find('textarea').keypress(function(e) {
+            // Enter pressed without Shift or Ctrl
+            if ((e.which == 10 || e.which == 13) && !e.ctrlKey && !e.shiftKey) {
+              const formData = new FormData(this.form);
+              // Append user message to the conversation
+              $("#chatconv").append("<li class='user' role='presentation'><span>user</span>: " + formData.get("jawab") + "</li>");
+              // Submit the form
+              this.form.submit();
+            }
+          });
+        }
+      });
+    }, "Error setting up form submission event.");
+  </script>
+</body>
+</html>
