@@ -6,13 +6,13 @@ from prompts.prompts import get_feedback_conversation_prompt
 
 def generate_prompt_base(app, user, session):
     # Récupère les données de la session de conversation depuis la base de données
-    #conversation_logs = Log.objects.filter(app=app, enduser=user, sess=session).order_by('-ts')[:50]
-    #conversation_prompt = [{"role": "user" if log.speaker == "enduser" else "assistant", "content": log.msg} for log in conversation_logs]
-
+    conversation_logs = Log.objects.filter(app=app, enduser=user, sess=session).order_by('-ts')[:50]
+    conversation_prompt = [{"role": "user" if log.speaker == "enduser" else "assistant", "content": log.msg} for log in conversation_logs]
+    print(conversation_prompt)
     # Générer le contexte de base pour le prompt
     #clean_context = "Pas de contexte"  # Mettre à jour selon la logique souhaitée pour déterminer le contexte
     #prompt = [{"role": "system", "content": clean_context}] + conversation_prompt
-    prompt=get_feedback_conversation_prompt(app)
+    prompt=get_feedback_conversation_prompt(app)+ conversation_prompt
     return prompt
 
 def generate_new_conversation_context(app, user):

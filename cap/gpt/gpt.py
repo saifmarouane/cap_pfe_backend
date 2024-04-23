@@ -10,7 +10,7 @@ openai.api_key = settings.OPENAI_API_KEY
 
 def get_chatgpt_response(prompt, enduser, top_p_val=0.2, model="gpt-3.5-turbo"):
     #return "Mock test content" ## For testing purposes only
-
+    print(openai.api_key)
     openai_response = openai.ChatCompletion.create(
             model=model,
             messages=prompt,
