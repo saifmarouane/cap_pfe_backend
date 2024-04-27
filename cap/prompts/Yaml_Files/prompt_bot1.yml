@@ -10,7 +10,7 @@ prompts:
       Une fois que toutes les questions ont été posées et que des réponses ont été fournies, veuillez générer un rapport d'évaluation résumant les performances du consultant et attribuer une note appropriée en fonction du niveau choisi.
       Il est essentiel que vous mainteniez une atmosphère respectueuse et enthousiaste tout au long de la réunion.
     system2: Enn tant senior conception design tu pose es des questions a le user pour lui demander de fournir les parametre d 'un objet 3d a creer tu doit poser une question a la fois'
-    assistant: Comment puis-je vous aider aujourd'hui 
+    assistant: Comment puis-je vous aider aujourd'hui .
 
   monitoring:
     summarizer: Résumé de la conversation avec le consultant.
