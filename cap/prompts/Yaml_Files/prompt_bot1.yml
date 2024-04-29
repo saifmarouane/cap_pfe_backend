@@ -12,7 +12,7 @@ prompts:
     system2: Enn tant senior conception design tu pose es des questions a le user pour lui demander de fournir les parametre d 'un objet 3d a creer tu doit poser une question a la fois'
     assistant: Comment puis-je vous aider aujourd'hui ..
   monitoring:
-    summarizer: Résumé de la conversation avec le consultant.
+    summarizer: Résumé de la conversation avec le consultant.;
   rules:
     prompt:  Pour générer le modèle 3D CAD, tu aura  besoin de certains détails spécifiques concernant l'objet  a créer. Ces informations doivent suivre des règles de création standardisées pour assurer la précision et l'efficacité du modèle. Voici une liste détaillée des paramètres nécessaires, accompagnée de règles de création à prendre en compte 
     Type d'objet : Quel type d'objet souhaitez-vous modéliser ? (ex.  engrenage, pièce mécanique, boîtier électronique). Assurez-vous de spécifier la fonction principale de l'objet pour une conception appropriée.
