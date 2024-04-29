@@ -8,7 +8,7 @@ from django.http import JsonResponse
 
 from django.views.decorators.csrf import csrf_protect
 
-from service.service import handle_feedback, get_feedback_conversation
+from service.service import generate_report, handle_feedback, get_feedback_conversation
 #from database.dataconn import get_db_conn
 # Create your views here.
 
@@ -127,4 +127,22 @@ def test_chat_api(request):
             #return render(request, "chat.html", {'chat': conversation})
             #return HttpResponse(conversation)
             return JsonResponse(conversation, safe=False,content_type='application/json')
+@csrf_exempt
+def summary(request):
+        user =request.GET.get('user') 
+        session = request.GET.get('session')
+        print(user,session)
 
+        if not user or not session:
+            print(" no : user,session")
+        else :
+            print("get info succied")
+            #print(user,session)
+
+            # Récupérer et afficher la conversation
+            summary = generate_report('bot1', user, session)
+            print(summary)
+            #return render(request, "chat.html", {'chat': conversation})
+            #return HttpResponse(conversation)
+            return JsonResponse(summary, safe=False)
+            

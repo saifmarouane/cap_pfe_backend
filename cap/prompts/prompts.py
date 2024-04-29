@@ -29,7 +29,7 @@ def get_feedback_conversation_prompt(app):
 
 def get_feedback_summarizer_prompt(app, conversation):
     yml = return_yml(app)
-    return [{"role": "assistant", "content": yml['prompts']['monitoring']['summarizer'].replace("$conversation", conversation)}]
+    return [{"role": "assistant", "content": yml['prompts']['monitoring']['summarizer'].replace("$conversation", str(conversation))}]
 
 def get_feedback_level_choose():
     return None

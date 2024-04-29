@@ -1,6 +1,7 @@
 import datetime
 from django.utils.timezone import make_aware
 # Remplacez les imports suivants par les chemins d'accès corrects selon votre structure de projet
+from prompts.prompts import get_feedback_summarizer_prompt
 from gpt.gpt import get_chatgpt_response, generate_new_conversation_context
 from database.datafuncs import get_user_conversation_session_data, insert_user_data, get_last_summary_context
 from gpt.gpt_prompt import get_chatgpt_feedback_response, generate_new_conversation_context
@@ -49,4 +50,6 @@ def generate_report(app, user, session):
     """
     Génère un rapport de la conversation pour une session donnée.
     """
-    return get_user_conversation_session_data(app, user, session)
+    conversation=get_user_conversation_session_data(app, user, session)
+    summary=get_feedback_summarizer_prompt(app, conversation)
+    return get_chatgpt_feedback_response(app, user, session, summary)
