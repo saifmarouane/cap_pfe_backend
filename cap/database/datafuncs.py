@@ -30,6 +30,6 @@ def get_user_conversation_session_data(app, user, session):
      
 def get_last_summary_context(user, app):
     """
-    Récupère le dernier contexte de résumé pour un utilisateur et une application donnés.
+    Récupère lee dernier contexte de résumé pour un utilisateur et une application donnés.
     """
     return Log.objects.filter(enduser=user, app=app, speaker='summary').order_by('-ts').first()
