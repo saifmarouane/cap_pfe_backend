@@ -5,7 +5,7 @@ from prompts.prompts import get_feedback_summarizer_prompt
 from gpt.gpt import get_chatgpt_response, generate_new_conversation_context
 from database.datafuncs import get_user_conversation_session_data, insert_user_data, get_last_summary_context
 from gpt.gpt_prompt import get_chatgpt_feedback_response, generate_new_conversation_context
-
+from kitty.texttocad import kittycad_prompt
 def handle_feedback(app, user, session, user_response):
     """
     Traite le feedback de l'utilisateur, génère une réponse de l'assistant et met à jour la base de données.
@@ -52,4 +52,13 @@ def generate_report(app, user, session):
     """
     conversation=get_user_conversation_session_data(app, user, session)
     summary=get_feedback_summarizer_prompt(app, conversation)
-    return get_chatgpt_feedback_response(app, user, session, summary)
+    prompt="A SPUR GEAR WITH 4 TEETH"
+    
+    prompt=get_chatgpt_feedback_response(app, user, session, summary)
+    print("this is the summary", prompt)
+
+    kittycad_prompt(prompt)
+
+    return prompt
+def download_cad(prompt):
+    return kittycad_prompt(prompt)

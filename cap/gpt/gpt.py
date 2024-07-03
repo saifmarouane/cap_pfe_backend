@@ -1,6 +1,8 @@
-import os
-import openai
+import time
 
+
+
+import openai
 from cap import settings
 import anthropic
 # Assurez-vous que la clé API d'OpenAI est définie comme une variable d'environnement
@@ -25,7 +27,7 @@ def generate_new_conversation_context(app, user):
     return "hello"
 client = anthropic.Anthropic(
         # defaults to os.environ.get("ANTHROPIC_API_KEY")
-        api_key="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",
+        api_key="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",
     )
 def get_chatgpt_response(prompt, enduser, top_p_val=0.2):
     

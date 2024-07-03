@@ -131,12 +131,12 @@ def test_chat_api(request):
 def summary(request):
         user =request.GET.get('user') 
         session = request.GET.get('session')
-        print(user,session)
+        print(user)
 
         if not user or not session:
-            print(" no : user,session")
+            print(" no :summar  user,session")
         else :
-            print("get info succied")
+            print("summary get info succied")
             #print(user,session)
 
             # Récupérer et afficher la conversation
@@ -145,4 +145,23 @@ def summary(request):
             #return render(request, "chat.html", {'chat': conversation})
             #return HttpResponse(conversation)
             return JsonResponse(summary, safe=False)
-            
+import os
+from django.http import StreamingHttpResponse, HttpResponseNotFound
+
+def file_iterator(file_path, chunk_size=8192):
+    with open(file_path, 'rb') as file:
+        while chunk := file.read(chunk_size):
+            yield chunk
+@csrf_exempt
+def generate_step_file(request):
+    #file_path = 'C:/Users/mosaif/Desktop/django_1/django_1/cap/text-to-cad-output.step'
+    file_path="C:/Users/mosaif/Desktop/s.stl"
+    print(file_path)
+    if os.path.exists(file_path):
+        response = StreamingHttpResponse(file_iterator(file_path), content_type="application/octet-stream")
+        response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
+        print(response)
+        return response
+    else:
+        return HttpResponseNotFound("File not found.")
+
