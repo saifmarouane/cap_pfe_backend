@@ -45,6 +45,14 @@ def kittycad_prompt(prompt):
 
         # Save the STEP data as text-to-cad-output.step
         final_result = response.outputs["source.step"]
-        with open("text-to-cad-output.step", "w", encoding="utf-8") as output_file:
+
+        file_path = 'C:\\Users\\GO\\Desktop\\cap\\cap_pfe_backend\\cap\\text-to-cad-output.step'
+
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        # Write to the file
+        with open(file_path, "w", encoding="utf-8") as output_file:
             output_file.write(final_result.get_decoded().decode("utf-8"))
             print(f"Saved output to {output_file.name}")
+

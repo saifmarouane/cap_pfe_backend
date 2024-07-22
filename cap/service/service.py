@@ -58,7 +58,7 @@ def generate_report(app, user, session):
 
     print("this is the summary", prompt)
 
-    #kittycad_prompt(prompt)
+    kittycad_prompt(prompt)
 
     return prompt
 def download_cad(prompt):
