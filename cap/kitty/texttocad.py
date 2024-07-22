@@ -6,7 +6,7 @@ from kittycad.models.api_call_status import ApiCallStatus
 from kittycad.models.file_export_format import FileExportFormat
 from kittycad.models.text_to_cad_create_body import TextToCadCreateBody
 import os
-os.environ['KITTYCAD_API_TOKEN'] = '018e3c81-5e1a-79af-81bd-e22025157d64'
+os.environ['KITTYCAD_API_TOKEN'] = '22f6c5e5-4792-4f86-b845-bd355e4c36b8'
 # Create our client.
 client = ClientFromEnv()
 

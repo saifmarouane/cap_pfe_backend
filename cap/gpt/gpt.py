@@ -27,7 +27,7 @@ def generate_new_conversation_context(app, user):
     return "hello"
 client = anthropic.Anthropic(
         # defaults to os.environ.get("ANTHROPIC_API_KEY")
-        api_key="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",
+        api_key="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",
     )
 def get_chatgpt_response(prompt, enduser, top_p_val=0.2):
     

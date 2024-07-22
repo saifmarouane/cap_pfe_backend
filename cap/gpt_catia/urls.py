@@ -9,6 +9,7 @@ urlpatterns = [
     path('apitest/', test_chat_api, name='c'),
     path('summary/', summary, name='c'),
     path('generate_step_file/', generate_step_file, name='generate_step_file'),
+
     path('reinit/', reset_session_cookie, name='reinit'),
     # projet_django/urls.py
 

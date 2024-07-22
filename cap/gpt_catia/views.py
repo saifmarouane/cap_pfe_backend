@@ -136,11 +136,13 @@ def summary(request):
         if not user or not session:
             print(" no :summar  user,session")
         else :
-            print("summary get info succied")
+            print("summary get info succied**********************************************")
             #print(user,session)
 
             # Récupérer et afficher la conversation
             summary = generate_report('bot1', user, session)
+            print("prinsummary get info succied/////////////////////////////////////")
+
             print(summary)
             #return render(request, "chat.html", {'chat': conversation})
             #return HttpResponse(conversation)
@@ -154,14 +156,15 @@ def file_iterator(file_path, chunk_size=8192):
             yield chunk
 @csrf_exempt
 def generate_step_file(request):
-    #file_path = 'C:/Users/mosaif/Desktop/django_1/django_1/cap/text-to-cad-output.step'
-    file_path="C:/Users/mosaif/Desktop/s.stl"
-    print(file_path)
+    file_path = 'C:\\Users\\GO\\Desktop\cap\\cap_pfe_backend\\cap\\text-to-cad-output.step'
+    #file_path="C:/Users/mosaif/Desktop/s.stl"
+    #print(file_path)
     if os.path.exists(file_path):
         response = StreamingHttpResponse(file_iterator(file_path), content_type="application/octet-stream")
         response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
         print(response)
         return response
     else:
+        print("hihihiihihihihih")
         return HttpResponseNotFound("File not found.")
 

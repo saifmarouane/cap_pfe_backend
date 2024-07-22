@@ -55,9 +55,10 @@ def generate_report(app, user, session):
     prompt="A SPUR GEAR WITH 4 TEETH"
     
     prompt=get_chatgpt_feedback_response(app, user, session, summary)
+
     print("this is the summary", prompt)
 
-    kittycad_prompt(prompt)
+    #kittycad_prompt(prompt)
 
     return prompt
 def download_cad(prompt):
